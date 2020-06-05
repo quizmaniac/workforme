@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link rel="stylesheet" type="text/css" href="static/css/profile.css">
+    </head>
+    <body style="">
+         <header>
+        <div class="main row">
+        <ul>
+            <li><a href="#">Services</a></li>
+            <li class="active"><a href="#">Profile</a></li>  <!-- can use username using jsp-->
+            <li><a href="logout">Logout</a></li>
+            </ul>
+        </div>
+
+        <div class="row" style="margin: 10%;box-sizing: border-box;">
+            <div class="column left" style="background:rgba(52, 53, 52, 0.5);box-sizing: border-box;">
+                <div class="option">
+                    <input class="btn" type="button" value="Personal Information" onclick=""/>
+                </div>
+                <div class="option">
+                    <input class="btn" type="button" value="Security Information" onclick=""/>
+                </div>
+            </div>
+            <div class="column right" style="background-color:#bbb;box-sizing: border-box;">
+                <table>
+                    <tr>
+                        <td><label>Username: </label></td>
+                        <td><input class="btn" type="text" name="username" value="JSP USERNAME" disabled></td>
+                        <td><a href="#" onclick="">Edit</a> </td>
+                    </tr>
+                    <tr>
+                        <td><label>Email: </label></td>
+                        <td><input class="btn" type="text" name="email" value="JSP USERNAME" disabled></td>
+                        <td><a href="#" onclick="">Edit</a> </td>
+                    </tr>
+                    <tr>
+                        <td><label>Phone Number: </label></td>
+                        <td><input class="btn" type="text" name="phnum" value="JSP USERNAME" disabled></td>
+                        <td><a href="#" onclick="">Edit</a> </td>
+                    </tr>
+                    <tr>
+                        <td><label>Address: </label></td>
+                        <td><input class="btn" type="text" name="address" value="JSP USERNAME" disabled></td>
+                        <td><a href="#" onclick="">Edit</a> </td>
+                    </tr>
+                    <tr>
+                        <td><label>Date of Birth: </label></td>
+                        <td><input class="btn" type="text" name="dob" value="JSP USERNAME" disabled></td>
+                    </tr>
+                    
+                </table>
+                <div id="update_div" hidden>
+                    <input class="btn" type="submit" value="Update" name="update"/>
+                </div>
+            </div>
+        </div>
+
+
+
+
+        <div class="login-box" hidden>
+            <h1>Login</h1>
+            <div class="">
+            <input type="text" placeholder="Username" name="" value="">
+            </div>
+            <div class="">
+            <input type="password" placeholder="Password" name="" value="">
+            </div>
+            <input class="btn" type="button" name="" value="Sign in">
+            </div>
+        
+        </header>
+    </body>
+</html>

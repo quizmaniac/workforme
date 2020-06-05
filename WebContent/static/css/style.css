@@ -4,7 +4,7 @@
     font-family:Century Gothic;
 }
 header{
-    background-image:linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)),url(1.jpg);
+    background-image:linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)),url(../images/1.jpg);
     height: 100vh;
     background-size: contain;
     background-position: center;
@@ -73,7 +73,7 @@ input[type=text]{
   border-radius: 5px;
   font-size: 20px;
   background-color: white;
-  background-image: url('searchicon.png');
+  background-image: url('../images/searchicon.png');
   background-position: px; 
   background-repeat: no-repeat;
   padding: 10px 26px 13px 50px;
