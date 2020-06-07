@@ -25,7 +25,9 @@ public class Register extends HttpServlet{
 		user.setDob(req.getParameter("dob"));
 		//user.setAddress(req.getParameter("address"));
 		try {
-			RegisterS.addUser(user);
+			if(!RegisterS.addUser(user)) { /*modify class to return string message instead of boolean and add that string to req*/
+				req.setAttribute("mesg", "Error in creating Account. Try Again");
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

@@ -20,24 +20,29 @@ public class login extends HttpServlet{
 		rs.forward(req, res);
 	}
 	public void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException{
-		String username=(String) req.getAttribute("username");
-		String password=(String) req.getAttribute("password");
+		String username=req.getParameter("username");
+		String password=req.getParameter("password");
 		RequestDispatcher rs;
-		if(username==null || password==null) {
-			String mesg="Please fill in correct and complete details.";
-			req.setAttribute("mesg", mesg);
-			rs = req.getRequestDispatcher("login.jsp");
-			rs.forward(req, res);
-		}else {
-			if(Login.verifyUser(username, password)==true) {
-				rs = req.getRequestDispatcher("user_page.jsp");
-				rs.forward(req, res);
-			}else {
-				String mesg="Wrong username or password.";
-				req.setAttribute("mesg", mesg);
-				rs = req.getRequestDispatcher("login.jsp");
-				rs.forward(req, res);
+			try {
+				if(Login.verifyUser(username, password)==true) {
+					rs = req.getRequestDispatcher("user_page.html");
+					rs.forward(req, res);
+				}else {
+					String mesg="Wrong username or password.";
+					req.setAttribute("mesg", mesg);
+					rs = req.getRequestDispatcher("login.html");
+					rs.forward(req, res);
+				}
+			} catch (ServletException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
-		}
+		
 	}
 }

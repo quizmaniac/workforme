@@ -1,11 +1,12 @@
 package tk.services.main.service;
 
 import java.sql.Connection;
-import java.util.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.text.SimpleDateFormat;
 import java.util.Base64;
+import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -53,20 +54,46 @@ public class RegisterS {
 		String date = user.getDob();
 		SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
 		Date startDate = sdf.parse(date);
-		java.sql.Date sqlDate = new java.sql.Date(startDate.getTime());
+		java.sql.Date sqlDate = new java.sql.Date(new SimpleDateFormat("yyyy-MM-dd").parse(date).getTime());
+		//java.sql.Date sqlDate = new java.sql.Date(startDate.getTime());
 		/*String addr = user.getAddress();*/
-		
-		String insert = "insert into workforme.users(username,email,dob,mobile,password) values(?,?,?,?,?)";
 		
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		Connection con = DriverManager.getConnection(url,username,pass);
-		PreparedStatement ps = con.prepareStatement(insert);
+		PreparedStatement ps;
+		/*
+		 Check for unique name and email and no
+		 */
+		String q="select * from users where username = ?";
+		ps = con.prepareStatement(q);
+		ps.setString(1, usern);
+		ResultSet rs=ps.executeQuery();
+		if(rs.next()) {
+			System.out.println("Duplicate Username");
+			return false;
+		}
+		q="select * from users where email = ?";
+		ps.setString(1, email);
+		rs=ps.executeQuery();
+		if(rs.next()) {
+			System.out.println("Duplicate email");
+			return false;
+		}
+		q="select * from users where mobile = ?";
+		ps.setString(1, number);
+		rs=ps.executeQuery();
+		if(rs.next()) {
+			System.out.println("Duplicate Phone no.");
+			return false;
+		}
+		String query = "insert into users(username,email,dob,mobile,password) values(?,?,?,?,?);";
+		ps = con.prepareStatement(query);
 		ps.setString(1, usern);
 		ps.setString(2, email);
 		ps.setDate(3, sqlDate );
 		ps.setString(4, number);
 		ps.setString(5, enc_password);
-		int i = ps.executeUpdate(insert);
+		int i = ps.executeUpdate();
 		System.out.println("Added User");
 		con.close();
 		if(i>0)
